@@ -1,0 +1,225 @@
+/**
+ * A WordPress plugin that adds a custom post type for placemarks and builds a Google Map with them
+ * @package BasicGoogleMapsPlacemarks
+ * @author Ian Dunn <ian@iandunn.name>
+ * @link http://wordpress.org/extend/plugins/basic-google-maps-placemarks/
+ */
+
+
+/*
+ * Front end
+ * Many of these exist to override theme styles that will distort elements
+ */
+#bgmp_map-canvas
+{
+	width: 600px;	/* The width and height here are just defaults in case the JavaScript can't load. They're overridden with the ones on the Settings page when the map is created */
+	height: 400px;
+}
+
+	/*
+	 *	Maps API doesn't take the infowindow's child element margins, font-size, line-height, font-weight, etc into account when calculating container size
+	 *	http://stackoverflow.com/questions/1554893/google-maps-api-v3-infowindow-not-sizing-correctly/5690251#5690251
+	 */
+	
+	.bgmp_placemark
+	{
+		margin: 0 !important;
+		font-size: medium !important;
+		line-height: normal !important;
+		color: black !important;
+	}
+		
+		.bgmp_placemark h3
+		{
+			margin: 0 !important;
+			padding: 5px 0;
+			font-size: medium !important;
+			line-height: normal !important;
+			font-weight: normal !important;
+		}
+		
+		.bgmp_placemark div
+		{
+			margin: 0 !important;
+		}
+	
+	#bgmp_map-canvas img
+	{
+		width: auto !important;
+		max-width: none !important;
+		background: none !important;
+		border-width: 0;
+		padding: 0;
+		margin: 0;
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+	}
+	
+	#bgmp_map-canvas #content
+	{
+		width: auto;
+		height: auto;
+		overflow: auto;
+	}
+	
+	
+/*
+ * Back end
+ */
+#bgmp_settings-fields
+{
+	float: left;	
+	width: 70%;
+	
+	/* @todo try to make this exand to fill screen if meta box gone - try to use WP core styles more */
+}
+
+#bgmp_settings-meta-boxes
+{
+	 float: left;
+	 margin-left: 15px;
+}
+	
+	#bgmp_settings-meta-boxes .postbox
+	{
+		 width: 286px;
+	}
+
+#bgmp_map-canvas-container {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+}
+
+.page-id-31 #bgmp_map-canvas-container {
+    height: 400px;
+    overflow: visible;
+    margin-bottom: 5px;
+}
+
+#bgmp_map-input {
+	display: none;
+}
+
+#bgmp_map-city-select-container {
+    outline: none;
+    overflow: hidden;
+    height: 30px;
+    border: 1px solid #9f9d9e;
+    width: 617px;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    clear: both;
+    z-index: 10;
+    display: block;
+    margin: 0px auto;
+    position: relative;
+    padding: 0 4px 2px 4px;
+    left: -3px;
+}
+.page-id-5 #bgmp_map-input,
+.page-id-5 #bgmp_map-city-select-container {
+    outline: none;
+    overflow: hidden;
+    height: 30px;
+    border: 1px solid #9f9d9e;
+    width: 458px;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    clear: both;
+    z-index: 10;
+    display: block;
+    margin: 0px auto;
+    position: relative;
+    padding: 4px;
+}
+
+#bgmp_map-input {
+    background: #fff url(images/map_icon_search.gif) 590px center no-repeat;
+    top: -370px;
+}
+
+#bgmp_map-city-select-container {
+    background: #fff url(images/map_icon_arrow_down.gif) 590px center no-repeat;
+    /* top: -455px; */
+    margin-bottom: 20px;
+}
+
+
+.page-id-5 #bgmp_map-input {
+    background: #fff url(images/map_icon_search.gif) 437px center no-repeat;
+    top: -770px;
+}
+
+.page-id-5 #bgmp_map-city-select-container {
+    background: #fff url(images/map_icon_arrow_down.gif) 437px center no-repeat;
+    /* top: -750px; */
+    margin-bottom: 20px;
+}
+
+
+
+
+
+#bgmp_map-partner {
+    display: none;
+}
+
+.home #bgmp_map-partner {
+    display: block;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    color: white;
+    background-color: #00aeef;
+    font-size: 15px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+	font-family: 'Montserrat';
+}
+
+.home #bgmp_map-partner:hover {
+	text-decoration: none;
+	color: black;
+}
+
+#bgmp_map-city-select {
+    background: transparent;
+    width: 100%;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1;
+    border: 0;
+    border-radius: 0;
+    height: 38px;
+    -webkit-appearance: none;
+}
+
+.page-id-5 #bgmp_map-canvas,
+.tax-bgmp-category #bgmp_map-canvas,
+.single-bgmp #bgmp_map-canvas {
+    width: 100%!important;
+}
+
+.bgmp_list li {
+	position: relative;
+	float: left;
+	width: 330px;
+	height: 120px;
+	padding: 0 20px 30px 20px;
+	list-style-type: none;
+	border: 0;
+	font-family: 'Montserrat';
+	color: #77787b;
+}
+
+.bgmp_view-on-map {
+}
+
+#bgmp_list {
+	margin-top: 10px;
+}

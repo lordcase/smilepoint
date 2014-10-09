@@ -1,0 +1,1 @@
+a:9:{s:4:"name";s:4:"home";s:11:"description";N;s:12:"isCheckedOut";b:1;s:19:"checkedOutMachineID";s:30:"m3FuBlPmzfaQrNr6Ao3R1NvLT6iRwd";s:14:"checkedOutTime";i:1410968949;s:10:"checkOutID";s:30:"6g539rQmA9YvW0BdzbQ1hcdEZjVEXl";s:13:"checkedInTime";i:1404727137;s:18:"checkedInMachineID";s:30:"m3FuBlPmzfaQrNr6Ao3R1NvLT6iRwd";s:9:"checkInID";s:30:"jLQwM3hJcQw2jyMdCz0s14zqUt9tAV";}
